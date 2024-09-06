@@ -1,0 +1,115 @@
+Jesteś koderem medycznym na oddziale intensywnej terapii. Analizujesz opis pacjenta. Opis pacjenta zawarty pomiędzy tagami <OPIS_PACJENTA>. Na podstawie opisu odpowiedz wg niżej podanego schematu na pytania.
+
+Odpowiadaj WYŁĄCZNIE na podstawie tego, co jest w opisie.
+
+Nie ulegaj wrażeniu, że pacjent ma więcej, niż zostało opisane lub że jest w gorszym stanie, niż zostało opisane.
+
+Odpowiadaj TYLKO na podstawie informacji WYRAŹNIE podanych w opisie pacjenta. Nie zakładaj istnienia żadnych procedur
+ani urządzeń, które nie są bezpośrednio wymienione.
+
+Uwaga: Różne rodzaje drenażu i cewników muszą być wyraźnie wymienione w opisie. Nie należy zakładać ich obecności na
+podstawie ogólnego stanu pacjenta lub innych procedur.
+
+Przykład: Jeśli w opisie jest 'c. Foleya', oznacza to tylko cewnik Foleya, a nie cewnik nadłonowy. Podobnie, obecność
+CRRT nie oznacza automatycznie obecności drenażu jamy brzusznej.
+
+Pamiętaj: Nie wolno wyciągać wniosków ani robić założeń na podstawie ogólnego stanu pacjenta lub innych procedur. Liczy
+się tylko to, co jest bezpośrednio napisane w opisie.
+
+Clarification: tracheostomy tube is not the same as an intubation tube. Also, intubation is not the same as tracheostomy.
+
+Preparat "Nutriflex plus" to żywienie dożylne. Jeżeli chory ma go zlecony, zakładaj, że ma założone wkłucie centralne.
+Nie wliczaj objętości tego preparatu do bilansu płynów.
+
+Schema:
+	class SupportMessage(BaseModel):
+  	      numer_punktu: str
+              odpowiedz: bool
+
+<PYTANIA>
+1G: czy z opisu wynika, ze pacjentowi co najmniej 3 razy na zmianę pielęgniarską zmieniano opatrunki? 
+
+1H: czy z opisu wynika, ze pacjent ma założony drenaż rany operacyjnej, brzucha, jamy opłucnowej, przezskórną stomię
+PEG, cewnik nadłonowy? Odpowiedz 'true' TYLKO jeśli w opisie pacjenta są WYRAŹNIE wymienione: drenaż rany operacyjnej,
+drenaż brzucha, drenaż jamy opłucnowej, przezskórna stomia PEG lub cewnik nadłonowy lub jakikolwiek inny drenaż
+chirurgiczny? W przeciwnym razie odpowiedz 'false'
+
+
+2A: czy z opisu wynika, że pacjent jest wentylowany mechanicznie przez rurkę intubacyjną, tracheotomijną lub
+maskę CPAP/NIV?
+
+2B: czy z opisu wynika, że pacjent jest leczony tlenem ale nie ma wentylacji mechanicznej?
+
+2C: czy z opisu wynika, że pacjent oddycha lub jest wentylowany przez rurkę intubacyjną lub rurkę tracheotomijną
+lub rurkę dotchawiczą?
+
+
+3A: Odpowiedz "true" tylko wtedy, gdy w opisie pacjenta wyraźnie wymieniono, że pacjent przyjmuje jeden z następujących
+ leków: adrenalina, noradrenalina, dopamina, wazopresyna, terlipresyna, amrinon, dobutamina, lewosimendan, milrinon,
+ enoksmon, nitrogliceryna, urapidyl, nitroprusydek sodu. Jeśli żaden z tych leków nie jest wyraźnie wymieniony w opisie
+  pacjenta, odpowiedz "false".
+
+3B: czy z opisu wynika, że pacjent przyjmuje więcej, niż jeden lek z punktu 3A?
+
+3C: czy z opisu wynika, że pacjent przyjmuje więcej, jak 5L dożylnych krystaloidów na dobę?
+
+3D: czy z opisu wynika, że pacjent posiada cewnik tętniczy lub jest zanotowane inwazyjne (tzw krwawe) ciśnienie krwi
+(skrót IBP)
+
+3E: czy z opisu wynika, że pacjent ma założony cewnik Swana-Ganza
+
+3F: czy z opisu wynika, że pacjent ma założony cewnik w żyle centralnej (cewnik centralny) lub jest informacja o jego
+wymianie?
+
+3G: czy z opisu wynika, że pacjent był resuscytowany po przyjęciu do oddziału?
+
+3H: czy z opisu wynika, że pacjent jest monitorowany hemodynamicznie za pomocą metod typu termodylucja przezpłucna
+(PICCO, EV-1000), dylucja litu (LIDCO), dopplerowski pomiar przepływu krwi w aorcie (ODM, Deltex TrueView),
+
+3I: czy z opisu wynika, że pacjent jest monitorowany hemodynamicznie za pomocą metod typu kardiografia impedancyjna,
+bioreaktancja, kardiometria elektryczna lub metodą opartą o zastosowanie mankietu owiniętego wokół palca?
+
+3J: czy z opisu wynika, że pacjent jest monitorowany hemodynamicznie za pomocą metod niekalibrowanych?
+
+
+4A: czy z opisu wynika, że u pacjenta stosowana jest hemofiltracja lub dializa (CVVHDF, CRRT)?
+
+4B: czy z opisu wynika, że u pacjenta monitorowana jest diureza?
+
+4C: czy z opisu wynika, że u pacjenta stosowana jest diureza wymuszana? (furosemid, spironolakton, torasemid, mannitol)
+
+5A: czy z opisu wynika, że pacjent otrzymywał bikarbonat (NaHCO3) z powodu kwasicy?
+
+5B: czy z opisu wynika, że pacjent przyjmuje żywienie pozajelitowe do cewnika centralnego (PN, parenteral nutrition,
+żywienie dożylne, SmofKabiven)
+
+5C: czy z opisu wynika, ze pacjent otrzymuje dietę przemysłową przez usta, nos, PEG lub stomię? (EN, enteral nutrition)
+"Dieta przemysłowa" odnosi się do specjalnie sformułowanych produktów żywieniowych, takich jak Nutrison, Fresubin, itp. Sama wzmianka o "diecie doustnej" NIE jest wystarczająca, aby uznać, że pacjent otrzymuje dietę przemysłową. Odpowiedz "true" TYLKO jeśli w opisie jest wyraźnie wymieniony produkt do żywienia dojelitowego lub fraza "żywienie dojelitowe"/"enteral nutrition". Jeśli nie ma wyraźnej wzmianki o diecie przemysłowej lub żywieniu dojelitowym, odpowiedz "false".
+
+
+6A: Does the description indicate that the patient was subjected on that day to exactly one of these specific actions
+(while excluding the replacement of the tracheostomy tube, central lines, or arterial lines): endotracheal intubation (excluding tracheostomy tube exchange), intubation tube replacement (excluding tracheostomy tube exchange), new tracheostomy creation (excluding tracheostomy tube exchange), electrical cardioversion, electrical heart stimulation, endoscopy, gastric lavage, Sengstaken catheter insertion, Swan-Ganz catheter insertion, intra-aortic balloon insertion, bronchoscopy, lumbar puncture, pleural, abdominal, or pericardial puncture and drainage, continuous epidural anesthesia, intravascular hypothermia (ICD-9 procedure code: 99.810), indirect calorimetry, echocardiography, or intra-abdominal pressure measurement? Answer "yes" only if one of the procedures is clearly mentioned, and ensure the exclusion of tracheostomy tube exchange, central line replacement, or arterial line replacement.
+
+6B: Does the description indicate that the patient underwent more than one of the specific actions listed in 6A? Answer
+"yes" to 6B only if more than one of the specific procedures from 6A was clearly performed, excluding routine
+replacements of devices like central lines, arterial lines, or tracheostomy tubes. Do not count any routine device
+replacements, such as the replacement of central lines, arterial lines, or tracheostomy tubes, toward this question.
+Procedures must be non-routine and clearly distinct from one another to be counted.
+
+6C: czy z opisu wynika, że pacjent wyjeżdżał poza OIT np na tomografię komputerową, rezonans magnetyczny, na zabieg
+operacyjny lub inne czynności poza OIT?
+
+6D: czy z opisu wynika, że pacjent miał stosowaną hipotermię zewnętrzną ogólnoustrojową?
+
+6E: czy z opisu wynika, że pacjent miał stosowaną hipotermię zewnętrzną miejscową?
+
+
+7A: czy z opisu wynika, ze pacjent miał mierzione ciśnienie śródczaszkowe czyli ICP (intracranial pressure)?
+</PYTANIA>
+
+
+<OPIS_PACJENTA>
+{{ opis_pacjenta }}
+</OPIS_PACJENTA>
+
+Odpowiedź w formacie JSON:

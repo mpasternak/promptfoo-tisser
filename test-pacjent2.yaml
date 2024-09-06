@@ -1,0 +1,63 @@
+  - vars:
+      opis_pacjenta: >
+            STAN OGÓLNY: Bardzo ciężki z tendencją do pogorszenia. Pacjentka przytomna, w kontakcie logicznym. 
+            Współpracuje z personelem, zgłasza swoje potrzeby. Podaje osłabienie. Bez uchwytnych ubytków 
+            neurologicznych. Siada do posiłków, współpracuje przy rehabilitacji.
+            ANALGOSEDACJA: kwetiapina, deksmedetomidyna, oksykodon+naloxon p.o., metamizol, buprenorfina
+            UKŁAD ODDECHOWY: oddech własny z tlenoterapią bierną okresowo przez maskę twarzową. Nad polami
+            płucnymi obustronnie furczenia. SpO2 98-99%.
+            BRZUCH: miekki, perystaltyka trudna do oceny; drenaż w okolicy loży po ropniu, 
+            UKŁAD KRĄŻENIA: Wydolny, w  obserwacji. ASM: i NIBP: w granicach normy. Tendencja do hipotensji
+            ŻYWIENIE: PN: Nutriflex plus 2000ml i.v. do tego dieta doustna
+            UKŁAD MOCZOWY: Diureza wspierana diuretykiem pętlowym (furosemid 3x10mg)  DZM: i DBP: wg karty obserwacjil.
+            Bilans i zbiórka moczu potencjalnie niedokładne z powodu przecieku moczu.
+            GLIKEMIA: Do 285 mg%; wlew insuliny wg algorytmu OIT.
+            TEMPERATURA CIAŁA: do 36,6°C 
+            INNE INTERWENCJE:  
+            OPATRUNKI: opatrunki, toaleta zgodnie z zaleceniami lekarzy z oddziału ortopedii
+            ANTYBIOTYKOTERAPIA: flukonazol, kolistyna, gentamycyna, ampicylina
+
+#      1a: true		# monitorowanie
+#      1b: true		# laboratorium
+#      1c: false		# jeden lek
+#      1d: false		# dwa leki
+#      1e: true		# wiele leków
+#      1f: true		# opatrunki standard
+#      1g: false		# częsta zmiana opatrunków
+      1h: true		# drenaże
+
+      2a: false		# wentylacja mechaniczna
+      2b: true		# wspomaganie oddychania
+      2c: false		# sztuczne drogi oddechowe
+      2d: true		# fizjoterapia oddechowa
+
+      3a: false		# pojedynczy lek wazoaktywny
+      3b: false		# wiele leków wazoaktywnych
+      3c: false		# masywna utrata płynów
+      3d: false		# cewnik tętniczy
+      3e: false		# cewnik w tętnicy płucnej
+      3f: true		# cewnik w żyle centralnej
+      3g: false		# RKO
+      3h: false		# monit. hemodyn. małoinwazyjny kalibrowany
+      3i: false		# monit. hemodyn. małoinwazyjny
+      3j: false		# monit. hemodyn. niekalibrowany
+
+      4a: false		# CRRT
+      4b: true		# pomiar diurezy
+      4c: true		# diureza wymuszana
+
+      5a: false 	# kwasica/zasadowica
+      5b: true		# żywienie pozajelitowe
+      5c: false		# żywienie enteralne
+
+      6a: false		# pojedyncza interwnecja w OIT
+      6b: false		# liczne interwencje w OIT
+      6c: false		# czynności poza OIT
+      6d: false		# hipotermia zewn. ogólna
+      6e: false		# hipotermia zewn. miejscoa
+
+      7a: false		# czujnik ICP
+
+    assert:
+      - type: python
+        value: file://./weryfikuj_tiss28.py

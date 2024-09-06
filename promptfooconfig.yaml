@@ -1,0 +1,24 @@
+description: "TISS28"
+
+prompts:
+  - file://./prompt-licz-tiss28.txt
+
+providers:
+  - id: "anthropic:messages:claude-3-5-sonnet-20240620"
+    config:
+      max_tokens: 2048
+      temperature: 0.0
+      
+  - id: "openai:gpt-4o"
+    config:
+      max_tokens: 2048
+      temperature: 0.0
+
+  - id: "mistral:mistral-large-latest"
+    config:
+      max_length: 2048
+      temperature: 0.0
+
+tests:
+  - file://./test-pacjent1.yaml
+  - file://./test-pacjent2.yaml

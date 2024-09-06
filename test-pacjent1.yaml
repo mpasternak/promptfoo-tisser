@@ -1,0 +1,60 @@
+  - vars:
+      opis_pacjenta: >
+            STAN OGÓLNY: Bardzo cieżki. Pacjent okresowo przytomny, w analgosedacji. RASS -1/-2. Źrenice wąskie, 
+            symetryczne. Okresowo reaktywny w łóżku, utrzymuje kontakt wzrokowy;  kontakt logiczny  nawiązuje.  
+            ANALGOSEDACJA: fentanyl, propofol, deksmedetomidyna , pregabalina, kwetiapina, buprenorfina, metadon 
+            UKŁAD ODDECHOWY: Niewydolny. Wentylacja respiratorem. VC-SIMV, f 8/min, PEEP 10 cmH2O, PS 8 cmH2O, Vt 560 mL.  
+            UKŁAD KRĄŻENIA: Wydolny, w obserwacji. IBP: 160/92, 128/67, 114/59mmHg. HR : 51-72/min.  
+            ŻYWIENIE: EN: Nutrison Protein Advance 2000ml, 
+            UKŁAD MOCZOWY: Diureza wsparta furosemidem 120mg/d i.v. DZM: 2800ml, DBP: -641ml. Kontynuacja CRRT CVVHDF Ci-Ca.  
+            GLIKEMIA: normogllikemia.  
+            TEMPERATURA CIAŁA: normotermia; ogrzewany grzałką Thermax 
+            INNE INTERWENCJE: wymiana linii centralnej, tętniczęj, c. Foleya oraz rurki tracheostomijnej 
+            OPATRUNKI: opatrunki, toaleta zgodnie z zaleceniami chirurga dyżurnego  
+            ANTYBIOTYKOTERAPIA: kolistyna, chlorheksydyna, unasyn, flukonazol
+
+#      1a: true		# monitorowanie
+#      1b: true		# laboratorium
+#      1c: false		# jeden lek
+#      1d: false		# dwa leki
+#      1e: true		# wiele leków
+#      1f: true		# opatrunki standard
+#      1g: false		# częsta zmiana opatrunków
+      1h: false		# drenaże
+
+      2a: true		# wentylacja mechaniczna
+      2b: false		# wspomaganie oddychania
+      2c: true		# sztuczne drogi oddechowe
+      2d: true		# fizjoterapia oddechowa
+      
+      3a: false		# pojedynczy lek wazoaktywny
+      3b: false		# wiele leków wazoaktywnych
+      3c: false		# masywna utrata płynów
+      3d: true		# cewnik tętniczy
+      3e: false		# cewnik w tętnicy płucnej
+      3f: true		# cewnik w żyle centralnej
+      3g: false		# RKO
+      3h: false		# monit. hemodyn. małoinwazyjny kalibrowany
+      3i: false		# monit. hemodyn. małoinwazyjny
+      3j: false		# monit. hemodyn. niekalibrowany
+      
+      4a: true		# CRRT
+      4b: true		# pomiar diurezy
+      4c: true		# diureza wymuszana
+
+      5a: false 	# kwasica/zasadowica
+      5b: false		# żywienie pozajelitowe
+      5c: true		# żywienie enteralne
+      
+      6a: false		# pojedyncza interwnecja w OIT
+      6b: false		# liczne interwencje w OIT
+      6c: false		# czynności poza OIT
+      6d: false		# hipotermia zewn. ogólna
+      6e: false		# hipotermia zewn. miejscoa
+
+      7a: false		# czujnik ICP
+
+
+    assert:
+      - type: python
+        value: file://./weryfikuj_tiss28.py
